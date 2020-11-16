@@ -23,6 +23,7 @@ class LLDataNode {
         void insert(std::shared_ptr<DataNode> node);
         bool isEmpty();
         resultingNodes search(std::shared_ptr<DataNode> word);
+        void print();
         
         // access methods
         std::shared_ptr<DataNode> getHead();

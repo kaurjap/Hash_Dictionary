@@ -58,9 +58,11 @@ resultingNodes LLDataNode::search(std::shared_ptr<DataNode> word) {
                 result.similarWords.push_back(currentNode->getData());
             } // end else if
             
+            /*
             else if (word->getData().size() == 1) {
                 std::cout << "The first 2 letters are needed to find other similar words.\n";
             } // end else if
+            */
             
             currentNode = currentNode->getNext();
         } // end while
@@ -78,3 +80,12 @@ std::shared_ptr<DataNode> LLDataNode::getHead() {
 void LLDataNode::setHead(std::shared_ptr<DataNode> node) {
     head = node;
 } // end setHead
+
+void LLDataNode::print() {
+    std::shared_ptr<DataNode> currentNode = std::make_shared<DataNode>();
+    currentNode = head;
+    while (currentNode != nullptr) {
+        std::cout << currentNode->getData() << ", ";
+        currentNode = currentNode->getNext();
+    } // end while
+} // end print

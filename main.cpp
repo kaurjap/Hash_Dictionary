@@ -13,6 +13,7 @@ bool isString(std::string); // to make sure that the user input does not contain
 void testLLDataNode();
 void testDataNode();
 void testHashTable();
+void printHashTable(std::shared_ptr<HashTable> hashtable);
 
 int main() {
     TimeInterval timer;
@@ -33,6 +34,10 @@ int main() {
             hashtable->insert(newWord);
         } // end while
     } // end else
+    
+    // print the hash table
+    printHashTable(hashtable);
+    
     
     // get input from the user
     std::string userWord;
@@ -153,3 +158,11 @@ void testHashTable() {
     hashtable.insert(node3);
     hashtable.search(node3);
 } // end testHashTable
+
+void printHashTable(std::shared_ptr<HashTable> hashtable) {
+    for (int i = 0; i < 26; i++) {
+        std::cout << "Index " << i << "; ";
+        hashtable->getArray().at(i)->print();
+        std::cout << std::endl;
+    } // end for
+} // end printHashTable
