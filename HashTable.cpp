@@ -1,6 +1,5 @@
 // HashTable.cpp
 
-#include <iostream>
 #include <sstream>
 #include "HashTable.h"
 
@@ -55,7 +54,7 @@ void HashTable::search(std::shared_ptr<DataNode> word) {
         std::cout << "\nTrue" << std::endl;
         std::cout << "Exact word found: " << result.word << std::endl;
     } else {
-        std::cout << "\nFalse" << std::endl;
+        std::cout << "\nFalse. \nThis word does not exist." << std::endl;
     } // end if-else
     
     // print similar words if there are any

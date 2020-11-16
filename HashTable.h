@@ -1,6 +1,5 @@
 // HashTable.h
 
-#include <vector>
 #include "LLDataNode.h"
 
 #ifndef HASHTABLE_H

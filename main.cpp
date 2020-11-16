@@ -15,20 +15,6 @@ void testDataNode();
 void testHashTable();
 
 int main() {
-    
-    // driver();
-    // TEST THE METHODS
-    TimeInterval timer;
-    timer.start();
-    testHashTable();
-    timer.stop();
-    std::cout << "\nExecution time: " << timer.GetInterval() << " micro-sec" << std::endl;
-    
-} // end main
-
-
-void driver() {
-    
     TimeInterval timer;
     
     // create an empty hash table
@@ -55,7 +41,7 @@ void driver() {
     // convert the input to lowercase using std::transform function
     std::transform(userWord.begin(), userWord.end(), userWord.begin(), ::tolower);
     
-    std::cout << "Word to search: " << userWord << std::endl;
+    // std::cout << "Word to search: " << userWord << std::endl;
     
     // make a new DataNode out of the new word
     std::shared_ptr<DataNode> searchWord = std::make_shared<DataNode>(userWord);
@@ -72,21 +58,28 @@ void driver() {
     // printing the time interval
     std::cout << "Execution Time: " << timer.GetInterval() << " micro-sec" << std::endl;
     
-} // end driver
+    return 0;
+} // end main
+
 
 
 std::string getInput() {
     // taking input from the user
-    std::cout << "Please enter the word you want to search" << std::endl;
+    std::cout << "Please enter the word you want to search: " << std::endl;
     std::string response;
     bool keepgoing = true;
     while (keepgoing) {
         std::cin >> response;
-        if (isString(response)) {
-            keepgoing = false;
-        } else {
-            std::cout << "That is not a word. Please enter again: \n";
-        } // end if-else
+        if (response.size() != 0) {
+            if (isString(response)) {
+                keepgoing = false;
+            } else {
+                std::cout << "That is not a word. Please enter again: \n";
+            } // end if-else
+        } // end if
+        else  {
+            std::cout << "Nothing entered. Please try again." << std::endl;
+        }
     } // end while
     return response;
 } // end getInput
@@ -149,7 +142,7 @@ void testHashTable() {
     for (int i = 0; i < 26; i++) {
         
         if (hashtable.getArray().at(i)->isEmpty()) {
-            std::cout << "empty linkedlist\n";
+            std::cout << "empty linkedlist \n";
         };
     } // end for
     std::shared_ptr<DataNode> node = std::make_shared<DataNode>("hello");
