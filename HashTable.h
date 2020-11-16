@@ -8,13 +8,15 @@
 
 class HashTable {
     protected:
-        std::vector<LLDataNode> array;
+        // vector to store all the linked lists into their hashed positions
+        std::vector< std::shared_ptr<LLDataNode> > array; // vector of size 26
         
     public:
         HashTable();
         int hashFunction(std::string key);
-        bool search(std::string key, std::string value);
-        void populateHashTable(std::string filename);
+        void insert(std::shared_ptr<DataNode> node);
+        void search(std::shared_ptr<DataNode> word);
+        // void populateHashTable(std::string filename);
         
         // access method
         std::vector<LLDataNode> getArray();
