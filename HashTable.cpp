@@ -10,9 +10,9 @@ HashTable::HashTable() {
     // std::shared_ptr<LLDataNode> linkedlist = std::make_shared<LLDataNode>();
     array = std::vector< std::shared_ptr<LLDataNode> >(26);
     
-//    for (int i = 0; i < 26; i++) {
-//        array.at(i) = linkedlist;
-//    } // end for
+    for (int i = 0; i < 26; i++) {
+        array.at(i) = std::make_shared<LLDataNode>();
+    } // end for
 } // end constructor
 
 
@@ -52,21 +52,24 @@ void HashTable::search(std::shared_ptr<DataNode> word) {
     resultingNodes result;
     result = currentLinkedList->search(word);
     if (result.wordExists) {
-        std::cout << "True" << std::endl;
+        std::cout << "\nTrue" << std::endl;
         std::cout << "Exact word found: " << result.word << std::endl;
     } else {
-        std::cout << "False" << std::endl;
+        std::cout << "\nFalse" << std::endl;
     } // end if-else
     
     // print similar words if there are any
     if (result.similarWords.size() != 0) {
-        std::cout << "Similar words found: " << std::endl;
+        std::cout << "\nSimilar words found: " << std::endl;
         for (int i = 0; i < result.similarWords.size(); i++) {
             std::cout << result.similarWords[i] << std::endl;
         } // end for
     } // end if
     else {
-        std::cout << "No similar words found either." << std::endl;
+        std::cout << "\nNo similar words found." << std::endl;
     } // end else
 } // end search
 
+std::vector< std::shared_ptr<LLDataNode> > HashTable::getArray() {
+    return array;
+} // end getArray

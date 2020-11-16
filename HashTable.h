@@ -19,7 +19,7 @@ class HashTable {
         // void populateHashTable(std::string filename);
         
         // access method
-        std::vector<LLDataNode> getArray();
+        std::vector< std::shared_ptr<LLDataNode> > getArray();
 }; // end class declaration
 
 #endif /* HASHTABLE_H */

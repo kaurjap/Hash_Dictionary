@@ -10,14 +10,19 @@
 void driver();
 std::string getInput();
 bool isString(std::string); // to make sure that the user input does not contain any numbers
-
+void testLLDataNode();
+void testDataNode();
+void testHashTable();
 
 int main() {
     
     // driver();
     // TEST THE METHODS
-    
-    
+    TimeInterval timer;
+    timer.start();
+    testHashTable();
+    timer.stop();
+    std::cout << "\nExecution time: " << timer.GetInterval() << " micro-sec" << std::endl;
     
 } // end main
 
@@ -96,3 +101,62 @@ bool isString(std::string response) {
     } // end for
     return isString;
 } // end isNumber
+
+
+
+
+/***** TEST METHODS *****/
+
+void testDataNode() {
+    std::shared_ptr<DataNode> node = std::make_shared<DataNode>("hello");
+    std::cout << "Word: " << node->getData() << std::endl;
+    std::cout << "Key: " << node->getKey() << std::endl;
+    if (node->getNext() == nullptr) {
+        std::cout << "next is null\n";
+    } // end if
+    std::shared_ptr<DataNode> node2 = std::make_shared<DataNode>();
+    node->setNext(node2);
+    if (node->getNext() == node2) {
+        std::cout << "next is node2\n";
+    } // end if
+} // end testDataNode
+
+
+void testLLDataNode() {
+    std::shared_ptr<LLDataNode> linkedList = std::make_shared<LLDataNode>();
+    if (linkedList->getHead() == nullptr && linkedList->isEmpty()) {
+        std::cout << "head is null \n";
+    } // end if
+    std::shared_ptr<DataNode> node = std::make_shared<DataNode>("hello");
+    linkedList->insert(node);
+    if (linkedList->getHead() != nullptr && linkedList->isEmpty() == false) {
+        std::cout << "head is not null \n";
+    } // end if
+    std::cout << "Word: " << linkedList->getHead()->getData() << std::endl;
+    std::cout << "Key: " << linkedList->getHead()->getKey() << std::endl;
+    resultingNodes result;
+    result = linkedList->search(node);
+    std::cout << "Word exists: " << result.wordExists << std::endl;
+    std::cout << "Word found: " << result.word << std::endl;
+    if (result.similarWords.size() == 0) {
+        std::cout << "No similar words";
+    }
+} // end testLLDataNode
+
+void testHashTable() {
+    HashTable hashtable = HashTable();
+    std::cout << "Size of HashTable: " << hashtable.getArray().size() << std::endl;
+    for (int i = 0; i < 26; i++) {
+        
+        if (hashtable.getArray().at(i)->isEmpty()) {
+            std::cout << "empty linkedlist\n";
+        };
+    } // end for
+    std::shared_ptr<DataNode> node = std::make_shared<DataNode>("hello");
+    std::shared_ptr<DataNode> node2 = std::make_shared<DataNode>("hell");
+    std::shared_ptr<DataNode> node3 = std::make_shared<DataNode>("h");
+    hashtable.insert(node);
+    hashtable.insert(node2);
+    hashtable.insert(node3);
+    hashtable.search(node3);
+} // end testHashTable
