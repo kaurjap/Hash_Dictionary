@@ -38,6 +38,11 @@ std::string DataNode::getKey() {
     return key;
 } // end getKey
 
+/* Function: setKey
+ * Purpose: to change the value of the word's key based on the value of the data (the word itself) when it is updated
+ *          the key is used to compare if the word exists
+ * Return value: the key string
+ */
 std::string DataNode::setKey() {
     std::string key;
     key = "";
