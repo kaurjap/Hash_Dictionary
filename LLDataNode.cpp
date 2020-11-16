@@ -5,9 +5,6 @@
 
 
 LLDataNode::LLDataNode() {
-//    head = std::make_shared<DataNode>(); // calling the constructor
-//    head->setData("");
-//    head->setNext(nullptr);
     head = nullptr;
 } // end constructor
 
@@ -25,7 +22,7 @@ bool LLDataNode::isEmpty() {
         return true;
     } else {
         return false;
-    }
+    } // end if-else
 } // end isEmpty
 
 
@@ -44,26 +41,17 @@ resultingNodes LLDataNode::search(std::shared_ptr<DataNode> word) {
         while (currentNode != nullptr) {
             // compare the key and value of this element with the word being searched for
             if (currentNode->getData() == word->getData() && currentNode->getKey() == word->getKey()) {
-                // the word exists
-                // print the word
-                //std::cout << currentHead->getData() << std::endl;
+                // the word exist
                 result.word = currentNode->getData();
                 result.wordExists = true;
             } // end if
             
             // if only the first two letters are the same
             else if (currentNode->getData() != word->getData() && currentNode->getKey() == word->getKey()) {
-                // std::cout << currentHead->getData() << std::endl;
                 // add the word to the similar words list
                 result.similarWords.push_back(currentNode->getData());
             } // end else if
-            
-            /*
-            else if (word->getData().size() == 1) {
-                std::cout << "The first 2 letters are needed to find other similar words.\n";
-            } // end else if
-            */
-            
+
             currentNode = currentNode->getNext();
         } // end while
     } // end else
@@ -80,6 +68,7 @@ std::shared_ptr<DataNode> LLDataNode::getHead() {
 void LLDataNode::setHead(std::shared_ptr<DataNode> node) {
     head = node;
 } // end setHead
+
 
 void LLDataNode::print() {
     std::shared_ptr<DataNode> currentNode = std::make_shared<DataNode>();

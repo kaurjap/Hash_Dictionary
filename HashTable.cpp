@@ -2,13 +2,12 @@
 
 #include <sstream>
 #include "HashTable.h"
+#include "TimeInterval.h"
 
 
 HashTable::HashTable() {
     // initialize every slot in the vector to contain an empty linked list
-    // std::shared_ptr<LLDataNode> linkedlist = std::make_shared<LLDataNode>();
     array = std::vector< std::shared_ptr<LLDataNode> >(26);
-    
     for (int i = 0; i < 26; i++) {
         array.at(i) = std::make_shared<LLDataNode>();
     } // end for
@@ -41,6 +40,9 @@ void HashTable::insert(std::shared_ptr<DataNode> node) {
 
 
 void HashTable::search(std::shared_ptr<DataNode> word) {
+    TimeInterval timer;
+    // start the timer
+    timer.start();
     // find the hashed index to look up the key at
     int hashCode;
     hashCode = hashFunction(word->getKey());
@@ -50,24 +52,33 @@ void HashTable::search(std::shared_ptr<DataNode> word) {
     currentLinkedList = array[hashCode];
     resultingNodes result;
     result = currentLinkedList->search(word);
+    
+    // searching has been performed, hence, stop the timer
+    timer.stop();
+    
+    // print the results from the search
     if (result.wordExists) {
         std::cout << "\nTrue" << std::endl;
-        std::cout << "Exact word found: " << result.word << std::endl;
     } else {
-        std::cout << "\nFalse. \nThis word does not exist." << std::endl;
+        std::cout << "\nFalse." << std::endl;
     } // end if-else
     
     // print similar words if there are any
     if (result.similarWords.size() != 0) {
-        std::cout << "\nSimilar words found: " << std::endl;
+        std::cout << "\n*********************\nSimilar words found: " << std::endl;
         for (int i = 0; i < result.similarWords.size(); i++) {
             std::cout << result.similarWords[i] << std::endl;
         } // end for
+        std::cout << "***********************\n";
     } // end if
     else {
         std::cout << "\nNo similar words found." << std::endl;
     } // end else
+    
+    // printing the time interval
+    std::cout << "Execution Time: " << timer.GetInterval() << " micro-sec" << std::endl;
 } // end search
+
 
 std::vector< std::shared_ptr<LLDataNode> > HashTable::getArray() {
     return array;

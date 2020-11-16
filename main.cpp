@@ -4,20 +4,19 @@
 #include <algorithm> // for std::transform to convert to lowercase
 
 #include "HashTable.h"
-#include "TimeInterval.h"
 
 // Function prototypes
 void driver();
 std::string getInput();
 bool isString(std::string); // to make sure that the user input does not contain any numbers
+// for debugging purposes
 void testLLDataNode();
 void testDataNode();
 void testHashTable();
 void printHashTable(std::shared_ptr<HashTable> hashtable);
 
+
 int main() {
-    TimeInterval timer;
-    
     // create an empty hash table
     std::shared_ptr<HashTable> hashtable = std::make_shared<HashTable>();
     
@@ -27,17 +26,24 @@ int main() {
     if (!inFile.is_open()) {
         std::cout << "Unable to open file" << std::endl;
     } else if (inFile.is_open()) {
+        int counter = 0;
         while (!inFile.eof()) {
+            counter++;
             std::getline(inFile, currentWord); // default delimiter is the new line character
             // create a new data node with the current word
             std::shared_ptr<DataNode> newWord = std::make_shared<DataNode>(currentWord);
+            // insert all the words as lowercase using casting to check whether a word contains an uppercase beginning letter
+            if ((int) currentWord[0] < 97) {
+                std::transform(currentWord.begin(), currentWord.end(), currentWord.begin(), ::tolower);
+                newWord->setData(currentWord);
+            } // end if
             hashtable->insert(newWord);
         } // end while
+        std::cout << counter << std::endl;
     } // end else
     
     // print the hash table
     printHashTable(hashtable);
-    
     
     // get input from the user
     std::string userWord;
@@ -46,23 +52,12 @@ int main() {
     // convert the input to lowercase using std::transform function
     std::transform(userWord.begin(), userWord.end(), userWord.begin(), ::tolower);
     
-    // std::cout << "Word to search: " << userWord << std::endl;
-    
     // make a new DataNode out of the new word
     std::shared_ptr<DataNode> searchWord = std::make_shared<DataNode>(userWord);
     
-    // starting the timer before search
-    timer.start();
-    
     // search the word in the hash table
     hashtable->search(searchWord);
-    
-    // stopping the timer after the search is finished
-    timer.stop();
-    
-    // printing the time interval
-    std::cout << "Execution Time: " << timer.GetInterval() << " micro-sec" << std::endl;
-    
+
     return 0;
 } // end main
 
@@ -70,7 +65,7 @@ int main() {
 
 std::string getInput() {
     // taking input from the user
-    std::cout << "Please enter the word you want to search: " << std::endl;
+    std::cout << "\nPlease enter the word you want to search: " << std::endl;
     std::string response;
     bool keepgoing = true;
     while (keepgoing) {
@@ -82,9 +77,9 @@ std::string getInput() {
                 std::cout << "That is not a word. Please enter again: \n";
             } // end if-else
         } // end if
-        else  {
+        else if (response == " " || response == "") {
             std::cout << "Nothing entered. Please try again." << std::endl;
-        }
+        } // end else
     } // end while
     return response;
 } // end getInput
@@ -99,6 +94,10 @@ bool isString(std::string response) {
     } // end for
     return isString;
 } // end isNumber
+
+
+
+
 
 
 
@@ -161,7 +160,7 @@ void testHashTable() {
 
 void printHashTable(std::shared_ptr<HashTable> hashtable) {
     for (int i = 0; i < 26; i++) {
-        std::cout << "Index " << i << "; ";
+        std::cout << "Index " << i << ":  ";
         hashtable->getArray().at(i)->print();
         std::cout << std::endl;
     } // end for

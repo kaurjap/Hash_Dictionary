@@ -23,6 +23,7 @@ std::string DataNode::getData() {
 
 void DataNode::setData(std::string word) {
     data = word;
+    key = setKey();
 } // end setData
 
 std::shared_ptr<DataNode> DataNode::getNext() {
