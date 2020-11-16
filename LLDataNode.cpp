@@ -58,6 +58,10 @@ resultingNodes LLDataNode::search(std::shared_ptr<DataNode> word) {
                 result.similarWords.push_back(currentNode->getData());
             } // end else if
             
+            else if (word->getData().size() == 1) {
+                std::cout << "The first 2 letters are needed to find other similar words.\n";
+            } // end else if
+            
             currentNode = currentNode->getNext();
         } // end while
     } // end else
