@@ -16,6 +16,9 @@ HashTable.o: DataNode.h LLDataNode.h HashTable.h HashTable.cpp
 run: runHash
 	./runHash
 
+debug: runHash
+	gdb -tui ./runHash
+
 clean:
 	rm *.o
 	rm runHash
