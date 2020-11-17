@@ -68,7 +68,7 @@ std::string getInput() {
     bool keepgoing = true;
     while (keepgoing) {
         std::cin >> response;
-        if (response.size() != 0) {
+        if (response.length() != 0) {
             if (isString(response)) {
                 keepgoing = false;
             } else {
@@ -85,7 +85,7 @@ std::string getInput() {
 
 bool isString(std::string response) {
     bool isString = true;
-    for (int i = 0; i < response.length(); i++) {
+    for (unsigned int i = 0; i < response.length(); i++) {
         if (isdigit(response[i])) {
             return false;
         } // end if
