@@ -4,7 +4,6 @@ Instructions for compilation
   To compile, execute:                                      	      make
   To compile and run, execute:                              	      make run
   To clean the current compilation and object files, execute:         make clean 
-  To debug, if needed, execute:                             	      make debug
 
 
 
