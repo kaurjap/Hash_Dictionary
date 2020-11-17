@@ -7,7 +7,9 @@ Instructions for compilation
   To debug, if needed, execute:                             	      make debug
 
 
-Overview of implementation:
+
+
+ALGORITHM:
 
 GOAL: to build a word suggestion program utilizing hashing to store words from the "Dictionary.txt" file into a hash table for easy look up. The hash table is just an array of linked lists in this program.
 INPUT: the "Dictionary.txt" file, the user's input for what word to look up
@@ -16,6 +18,7 @@ OUTPUT: boolean for whether the word exists or not, similar words suggested
 STEPS:
 
 1. I build a manual hash table. To do so, I create three classes to organize the overall program. The DataNode class represents each word in the Dictionary.txt file. When the file is read, each of the words is stored as an object of type DataNode, which are then hashed to be stored in a vector of linked lists in the HashTable class. The LLDataNode class represents each linked list of data nodes that is stored in the vector that is referred to as the hash table for this program. 
+
 
 2. The first letter of a word is used as a key to hash words to their spots in the hash table. Essentially, the hash function that I chose is chosen so that it hashes all of the words that start with the same first letter into the same spot, in the same linked list (also referred to as the same bucket) in the hash table. The hash function used is the following:
 	k = first character of the word being hased (char)
@@ -28,7 +31,9 @@ STEPS:
 	Using this hash function, it is made sure that the only collisions that happen are if the words start with the same first letter. This is shown as output in my program when I print the hash table to display what the program is doing.
 	All of this is done by the hashFunction() that is part of the HashTable class in code.
 
+
 3. Searching is performed by the function search defined in the HashTable class. Since the program is supposed to suggest words that begin with the same first two letters, the DataNode class contains a variable to store that. Hence, when the search function is called, it takes in the user input as the word to search for (converted into lowercase), finds the hashCode index of where it is stored in the hashTable, and then traverses through the linked list in that spot to search for the exact element. While it traverses, it also stores all the other words that start with the same two letters. Once this seach is executed, this result is printed. 
+
 
 4. The timer for the execution time that it takes to search is started right before the searching algorithm is started, and it stops right after the program is done searching through the specified linked list to look for the word, returning a struct that contains the list of all the similar words and a boolean to express whether the exact word exists in the dictionary or not.
 
