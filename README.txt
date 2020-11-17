@@ -11,7 +11,7 @@ Instructions for compilation
 
 ALGORITHM:
 
-GOAL: to build a word suggestion program utilizing hashing to store words from the "Dictionary.txt" file into a hash table for easy look up. The hash table is just an array of linked lists in this program.
+GOAL: to built a word suggestion program utilizing hashing to store words from the "Dictionary.txt" file into a hash table for easy look up. The hash table is just an array of linked lists in this program.
 INPUT: the "Dictionary.txt" file, the user's input for what word to look up
 OUTPUT: boolean for whether the word exists or not, similar words suggested
 
