@@ -46,6 +46,8 @@ FEATURES OF THE PROGRAM:
 1. The program is case insensitive. The word "WHO" is regarded to be the same as "who" to search in the dictionary.
 2. If the word exists in the file, the program outputs "True" and lists other similar words that begin with the same first two letters that have been found, if any.
 3. If the word does not exist in the file, the program outputs "False", but still suggests other similar words that begin with the same first two letters that have been found, again, if any.
+4. If the word entered is only letter long, for example "I", it returns "True" if the word exists. However, there are no similar words that exist that show up because the suggested words are based on the first two letters.
+
 
 WHAT THE OUTPUT SAYS:
 
