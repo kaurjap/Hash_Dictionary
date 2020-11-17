@@ -6,7 +6,7 @@
 #ifndef LLDATANODE_H
 #define LLDATANODE_H
 
-// a struct to simplify keeping track of all the valid words found in the process
+// a struct to simplify keeping track of all the similar words found in the process of searching
 struct resultingNodes {
     std::vector<std::string> similarWords;
     std::string word;
@@ -28,6 +28,7 @@ class LLDataNode {
         // access methods
         std::shared_ptr<DataNode> getHead();
         void setHead(std::shared_ptr<DataNode> node);
+
 }; // end class declaration
 
 #endif /* LLDATANODE_H */

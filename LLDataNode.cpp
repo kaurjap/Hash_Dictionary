@@ -59,6 +59,17 @@ resultingNodes LLDataNode::search(std::shared_ptr<DataNode> word) {
 } // end search
 
 
+// printing the linked list
+void LLDataNode::print() {
+    std::shared_ptr<DataNode> currentNode = std::make_shared<DataNode>();
+    currentNode = head;
+    while (currentNode != nullptr) {
+        std::cout << currentNode->getData() << ", ";
+        currentNode = currentNode->getNext();
+    } // end while
+} // end print
+
+
 // access methods
 std::shared_ptr<DataNode> LLDataNode::getHead() {
     return head;
@@ -68,13 +79,3 @@ std::shared_ptr<DataNode> LLDataNode::getHead() {
 void LLDataNode::setHead(std::shared_ptr<DataNode> node) {
     head = node;
 } // end setHead
-
-
-void LLDataNode::print() {
-    std::shared_ptr<DataNode> currentNode = std::make_shared<DataNode>();
-    currentNode = head;
-    while (currentNode != nullptr) {
-        std::cout << currentNode->getData() << ", ";
-        currentNode = currentNode->getNext();
-    } // end while
-} // end print

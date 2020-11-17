@@ -15,13 +15,10 @@ HashTable::HashTable() {
 
 
 int HashTable::hashFunction(std::string key) {
-    // the key is the first two letters of the word to find the hash code of
-    // if the word is only 1 letter long, then, key is only the first letter
-    // But I am finding the hash code based on the first letter only
+    // key to hash is the first letter of a word
     // all words with the same first letter hash to the same slot in the hash table in a chain (linked list)
     // the key coming in should be lowercase
     char k = key[0];
-    // start the hash code
     // getting the ascii value of the first letter and finding the remainder of its division by 26
     int hashCode;
     hashCode = (int(k) + 7) % 26;
@@ -30,7 +27,7 @@ int HashTable::hashFunction(std::string key) {
 
 
 void HashTable::insert(std::shared_ptr<DataNode> node) {
-    // node has a key and value associated with it 
+    // node has a key and value associated with it
     // hash the key first
     int index;
     index = hashFunction(node->getKey());
