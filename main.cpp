@@ -26,9 +26,7 @@ int main() {
     if (!inFile.is_open()) {
         std::cout << "Unable to open file" << std::endl;
     } else if (inFile.is_open()) {
-        int counter = 0;
         while (!inFile.eof()) {
-            counter++;
             std::getline(inFile, currentWord); // default delimiter is the new line character
             // create a new data node with the current word
             std::shared_ptr<DataNode> newWord = std::make_shared<DataNode>(currentWord);
@@ -39,10 +37,10 @@ int main() {
             } // end if
             hashtable->insert(newWord);
         } // end while
-        std::cout << counter << std::endl;
     } // end else
     
     // print the hash table
+    std::cout << "Printing the Hash Table \n";
     printHashTable(hashtable);
     
     // get input from the user
@@ -65,7 +63,7 @@ int main() {
 
 std::string getInput() {
     // taking input from the user
-    std::cout << "\nPlease enter the word you want to search: " << std::endl;
+    std::cout << "\n\nPlease enter the word you want to search: " << std::endl;
     std::string response;
     bool keepgoing = true;
     while (keepgoing) {
@@ -146,7 +144,7 @@ void testHashTable() {
     for (int i = 0; i < 26; i++) {
         
         if (hashtable.getArray().at(i)->isEmpty()) {
-            std::cout << "empty linkedlist \n";
+            std::cout << "empty linked list \n";
         };
     } // end for
     std::shared_ptr<DataNode> node = std::make_shared<DataNode>("hello");
