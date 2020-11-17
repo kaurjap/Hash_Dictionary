@@ -67,7 +67,7 @@ void HashTable::search(std::shared_ptr<DataNode> word) {
     if (result.similarWords.size() != 0) {
         std::cout << "\n*********************\nSimilar words found: " << std::endl;
         for (int i = 0; i < result.similarWords.size(); i++) {
-            std::cout << result.similarWords[i] << std::endl;
+            std::cout << result.similarWords.at(i) << std::endl;
         } // end for
         std::cout << "***********************\n";
     } // end if

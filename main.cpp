@@ -85,7 +85,7 @@ std::string getInput() {
 
 bool isString(std::string response) {
     bool isString = true;
-    for (int i = 0; i < response.size(); i++) {
+    for (int i = 0; i < response.length(); i++) {
         if (isdigit(response[i])) {
             return false;
         } // end if
