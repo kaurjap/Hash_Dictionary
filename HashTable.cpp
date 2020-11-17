@@ -72,11 +72,11 @@ void HashTable::search(std::shared_ptr<DataNode> word) {
         std::cout << "***********************\n";
     } // end if
     else {
-        std::cout << "\nNo similar words found." << std::endl;
+        std::cout << "\n*********************\nNo similar words found.\n*********************\n" << std::endl;
     } // end else
     
     // printing the time interval
-    std::cout << "Execution Time: " << timer.GetInterval() << " micro-sec" << std::endl;
+    std::cout << "Execution Time: " << timer.GetInterval() << " micro-sec\n" << std::endl;
 } // end search
 
 
