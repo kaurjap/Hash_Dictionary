@@ -16,7 +16,7 @@ OUTPUT: boolean for whether the word exists or not, similar words suggested
 
 STEPS:
 
-1. I build a manual hash table. To do so, I create three classes to organize the overall program. The DataNode class represents each word in the Dictionary.txt file. When the file is read, each of the words is stored as an object of type DataNode, which are then hashed to be stored in a vector of linked lists in the HashTable class. The LLDataNode class represents each linked list of data nodes that is stored in the vector that is referred to as the hash table for this program. 
+1. I built a manual hash table. To do so, I created three classes to organize the overall program. The DataNode class represents each word in the Dictionary.txt file. When the file is read, each of the words is stored as an object of type DataNode, which are then hashed to be stored in a vector of linked lists in the HashTable class. The LLDataNode class represents each linked list of data nodes that is stored in the vector that is referred to as the hash table for this program. 
 
 
 2. The first letter of a word is used as a key to hash words to their spots in the hash table. Essentially, the hash function that I chose is chosen so that it hashes all of the words that start with the same first letter into the same spot, in the same linked list (also referred to as the same bucket) in the hash table. The hash function used is the following:
